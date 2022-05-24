@@ -1,0 +1,9 @@
+policies:
+  - name: restrict-service-account
+    rules:
+      - name: validate-service-account
+        values:
+          saMap.data.serviceAccountName: "docker.io/busybox:1.28"
+          request.object.spec.serviceAccountName: "docker.io/busybox:1.28"
+          request.namespace: staging
+    

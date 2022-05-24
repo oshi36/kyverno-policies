@@ -1,0 +1,28 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: goodpod01
+  namespace: staging
+spec:
+  serviceAccountName: docker.io/busybox:1.28
+  containers:
+  - image: busybox:1.28
+    name: busybox
+    args:
+    - sleep
+    - "9999"
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: badpod01
+  namespace: staging
+spec:
+  serviceAccountName: default
+  containers:
+  - image: busybox:1.28
+    name: busybox
+    args:
+    - sleep
+    - "9999"
