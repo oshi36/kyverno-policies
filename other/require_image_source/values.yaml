@@ -1,0 +1,14 @@
+policies:
+  - name: require-image-source
+    # rules:
+    #   - name: check-source
+    #     values:
+    #       imageData.labels: "ghcr.io/kyverno/kyverno-annotations-example:latest"
+    #       imageData.annotations: "ghcr.io/kyverno/kyverno-annotations-example:latest"
+    resources:
+      - name: badpod01
+        values:
+          request.operation: CREATE
+      - name: goodpod01
+        values:
+          request.operation: UPDATE
