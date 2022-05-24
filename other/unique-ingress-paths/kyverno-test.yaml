@@ -1,0 +1,17 @@
+name: unique-ingress-path
+policies:
+  - unique-ingress-paths.yaml
+resources:
+  - resource.yaml
+variables: values.yaml
+results:
+  - policy: unique-ingress-path
+    rule: check-path
+    resource: ingress-hello-world-1
+    kind: Ingress
+    result: pass
+  - policy: unique-ingress-path
+    rule: check-path
+    resource: ingress-hello-world-2
+    kind: Ingress
+    result: fail

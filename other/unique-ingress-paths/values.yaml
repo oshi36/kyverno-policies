@@ -1,0 +1,16 @@
+policies:
+- name: unique-ingress-path
+  rules:
+  - name: check-path
+    values:
+      allpaths: " hello-world-1 "
+      nspath: " hello-world-1 "
+  resources:
+  - name: ingress-hello-world-1
+    values:
+      request.operation: CREATE
+      request.namespace: demo1
+  - name: ingress-hello-world-2
+    values:
+      request.operation: CREATE
+      request.namespace: demo2
