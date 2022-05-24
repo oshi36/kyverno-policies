@@ -1,0 +1,51 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: secret-env-pod
+  # labels:
+  #   status: protected
+spec:
+  containers:
+  - name: mycontainer
+    image: redis
+    env:
+    - name: SECRET_STATUS
+      valueFrom:
+        secretKeyRef:
+          name: status
+          key: protected
+  restartPolicy: Never
+
+---
+# apiVersion: v1
+# kind: Pod
+# metadata:
+#   name: secret-ref-pod
+# spec:
+#   containers:
+#   - name: test-container
+#     image: k8s.gcr.io/busybox
+#     command: [ "/bin/sh", "-c", "env" ]
+#     envFrom:
+#     - secretRef:
+#         name: mysecret
+#   restartPolicy: Never
+# ---
+# apiVersion: v1
+# kind: Pod
+# metadata:
+#   name: secret-vol-pod
+#   labels:
+#     status: non-protected
+# spec:
+#   volumes:
+#   - name: secret-volume
+#     secret:
+#       secretName: mysecret
+#   containers:
+#   - name: test-container
+#     image: k8s.gcr.io/busybox
+#     volumeMounts:
+#     - name: secret-volume
+#       readOnly: true
+#       mountPath: "/etc/secret-volume"

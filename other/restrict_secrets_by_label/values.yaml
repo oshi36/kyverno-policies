@@ -1,0 +1,34 @@
+policies:
+  - name: restrict-secrets-by-name
+    rules:
+      - name: secrets-lookup-from-volumes
+        foreachValues:
+          imageData: ["foo", "foo1"]
+      - name: secrets-lookup-from-env
+        foreachValues:
+          imageData: ["foo", "foo1"]
+      - name: secrets-lookup-from-envfrom
+        foreachValues:
+          imageData: ["foo", "foo1"]
+    resources:
+    - name: secret-env-pod
+      values:
+        request.operation: CREATE
+    # - name: bad-pod-vol
+    #   values:
+    #     request.operation: CREATE
+    # - name: bad-pod-env
+    #   values:
+    #     request.operation: CREATE
+    # - name: bad-pod-envfrom
+    #   values:
+    #     request.operation: CREATE
+    # - name: bad-deploy-env
+    #   values:
+    #     request.operation: CREATE
+    # - name: bad-deploy-envfrom
+    #   values:
+    #     request.operation: CREATE
+    # - name: bad-deploy-vol
+    #   values:
+    #     request.operation: CREATE
